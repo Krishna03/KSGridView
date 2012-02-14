@@ -85,7 +85,16 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dataSource numberOfItemsInGridView:self] / [dataSource numberOfColumnsInGridView:self] + 1;
+    const NSUInteger numberOfItems = [dataSource numberOfItemsInGridView:self];
+    const NSUInteger numberOfColumns = [dataSource numberOfColumnsInGridView:self];
+    NSUInteger rows = numberOfItems / numberOfColumns;
+
+    // add partial row
+    if (numberOfItems % numberOfColumns) {
+        ++rows;
+    }
+
+    return rows;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,7 +104,7 @@
     // data source size
     const NSUInteger numberOfItems = [dataSource numberOfItemsInGridView:self];
     const NSUInteger numberOfColumns = [dataSource numberOfColumnsInGridView:self];
-    const NSUInteger numberOfRows = numberOfItems / numberOfColumns + 1;
+    const NSUInteger numberOfRows = [self tableView:tableView numberOfRowsInSection:0];
 
     KSGridViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
