@@ -16,6 +16,7 @@
 		8CB8297A14EA756A0053FBB7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8297914EA756A0053FBB7 /* ViewController.m */; };
 		8CB8297D14EA75B80053FBB7 /* KSGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB8297C14EA75B80053FBB7 /* KSGridView.m */; };
 		8CB829A814EAC7D70053FBB7 /* KSGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB829A714EAC7D70053FBB7 /* KSGridViewCell.m */; };
+		8CB829B814EB1D180053FBB7 /* KSGridViewIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB829B714EB1D180053FBB7 /* KSGridViewIndex.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		8CB8297C14EA75B80053FBB7 /* KSGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSGridView.m; sourceTree = "<group>"; };
 		8CB829A614EAC7D70053FBB7 /* KSGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSGridViewCell.h; sourceTree = "<group>"; };
 		8CB829A714EAC7D70053FBB7 /* KSGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSGridViewCell.m; sourceTree = "<group>"; };
+		8CB829B614EB1D180053FBB7 /* KSGridViewIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSGridViewIndex.h; sourceTree = "<group>"; };
+		8CB829B714EB1D180053FBB7 /* KSGridViewIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSGridViewIndex.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				8CB8297C14EA75B80053FBB7 /* KSGridView.m */,
 				8CB829A614EAC7D70053FBB7 /* KSGridViewCell.h */,
 				8CB829A714EAC7D70053FBB7 /* KSGridViewCell.m */,
+				8CB829B614EB1D180053FBB7 /* KSGridViewIndex.h */,
+				8CB829B714EB1D180053FBB7 /* KSGridViewIndex.m */,
 			);
 			name = Classes;
 			path = ../../Classes;
@@ -189,6 +194,7 @@
 				8CB8297A14EA756A0053FBB7 /* ViewController.m in Sources */,
 				8CB8297D14EA75B80053FBB7 /* KSGridView.m in Sources */,
 				8CB829A814EAC7D70053FBB7 /* KSGridViewCell.m in Sources */,
+				8CB829B814EB1D180053FBB7 /* KSGridViewIndex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

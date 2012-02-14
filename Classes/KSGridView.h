@@ -19,19 +19,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KSGridViewCell.h"
-
-@interface KSGridViewIndex : NSObject
-
-@property (nonatomic, readonly) NSUInteger position;
-@property (nonatomic, readonly) NSUInteger row;
-@property (nonatomic, readonly) NSUInteger column;
-
-+ (id) indexWithPosition:(NSUInteger)aPosition row:(NSUInteger)aRow column:(NSUInteger)aColumn;
-+ (id) indexWithCell:(KSGridViewCell *)aCell column:(NSUInteger)aColumn;
-- (id) initWithPosition:(NSUInteger)aPosition row:(NSUInteger)aRow column:(NSUInteger)aColumn;
-- (id) initWithCell:(KSGridViewCell *)aCell column:(NSUInteger)aColumn;
-
-@end
+#import "KSGridViewIndex.h"
 
 @protocol KSGridViewDataSource;
 @protocol KSGridViewDelegate;

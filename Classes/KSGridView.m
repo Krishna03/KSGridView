@@ -20,48 +20,6 @@
 #import "KSGridView.h"
 #import "KSGridViewCell.h"
 
-@implementation KSGridViewIndex
-
-@synthesize position;
-@synthesize row;
-@synthesize column;
-
-+ (id) indexWithPosition:(NSUInteger)aPosition row:(NSUInteger)aRow column:(NSUInteger)aColumn
-{
-    return [[[self alloc] initWithPosition:aPosition row:aRow column:aColumn] autorelease];
-}
-
-+ (id) indexWithCell:(KSGridViewCell *)aCell column:(NSUInteger)aColumn
-{
-    return [[[self alloc] initWithCell:aCell column:aColumn] autorelease];
-}
-
-- (id) initWithPosition:(NSUInteger)aPosition row:(NSUInteger)aRow column:(NSUInteger)aColumn
-{
-    if ((self = [super init])) {
-        position = aPosition;
-        row = aRow;
-        column = aColumn;
-    }
-    return self;
-}
-
-- (id) initWithCell:(KSGridViewCell *)aCell column:(NSUInteger)aColumn
-{
-    const NSInteger aPosition = aCell.row * aCell.numberOfColumns + aColumn;
-
-    return [self initWithPosition:aPosition row:aCell.row column:aColumn];
-}
-
-- (NSString *) description
-{
-    return [NSString stringWithFormat:@"{position:%d, row:%d, column:%d}", position, row, column];
-}
-
-@end
-
-//
-
 @interface KSGridView ()
 
 @property (nonatomic, retain) UITableView *table;
