@@ -26,8 +26,8 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    ViewController *vc = [[ViewController alloc] init];
-    [self.window addSubview:vc.view];
+    viewController = [[ViewController alloc] init];
+    [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];
     
     return YES;}
