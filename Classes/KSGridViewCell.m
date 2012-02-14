@@ -58,6 +58,7 @@
     items = [anItems mutableCopy];
     for (UIView *itemView in items) {
         itemView.userInteractionEnabled = NO; // for touchesBegan
+        [self.contentView addSubview:itemView];
     }
 
     // default to all items
@@ -79,6 +80,7 @@
 {
     itemView.userInteractionEnabled = NO; // for touchesBegan
     [items addObject:itemView];
+    [self.contentView addSubview:itemView];
 
     [self setNeedsLayout];
 }
@@ -131,7 +133,6 @@
         itemFrame.origin.y = itemPadding.y;
         itemView.frame = itemFrame;
 
-        [self.contentView addSubview:itemView];
         ++i;
     }
 }
