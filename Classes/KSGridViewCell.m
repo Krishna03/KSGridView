@@ -88,12 +88,17 @@
 - (void) setNumberOfColumns:(NSUInteger)aNumberOfColumns
 {
     numberOfColumns = aNumberOfColumns;
+    self.numberOfVisibleItems = MIN(numberOfColumns, numberOfVisibleItems);
 
     [self setNeedsLayout];
 }
 
 - (void) setNumberOfVisibleItems:(NSUInteger)aNumberOfVisibleItems
 {
+    NSAssert2(aNumberOfVisibleItems <= numberOfColumns,
+              @"numberOfVisibleItems must be <= numberOfColumns (%d > %d)",
+              aNumberOfVisibleItems, numberOfColumns);
+
     numberOfVisibleItems = aNumberOfVisibleItems;
 
     NSUInteger i = 0;
