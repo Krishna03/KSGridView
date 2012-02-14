@@ -45,7 +45,11 @@
 
 - (NSInteger) numberOfItemsInGridView:(KSGridView *)gridView
 {
-    return 39;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return 73;
+    } else {
+        return 37;
+    }
 }
 
 - (NSInteger) numberOfColumnsInGridView:(KSGridView *)gridView
@@ -55,7 +59,7 @@
     if (UIInterfaceOrientationIsPortrait(orientation)) {
         return 2;
     } else {
-        return 5;
+        return 3;
     }
 }
 
