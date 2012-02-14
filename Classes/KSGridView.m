@@ -55,7 +55,7 @@
 
 - (NSString *) description
 {
-    return [NSString stringWithFormat:@"{pos=%d, row=%d, column=%d}", position, row, column];
+    return [NSString stringWithFormat:@"{position:%d, row:%d, column:%d}", position, row, column];
 }
 
 @end
