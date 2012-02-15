@@ -33,7 +33,7 @@
 
 @end
 
-@protocol KSGridViewDataSource
+@protocol KSGridViewDataSource<NSObject>
 
 - (NSInteger) numberOfItemsInGridView:(KSGridView *)gridView;
 - (NSInteger) numberOfColumnsInGridView:(KSGridView *)gridView;
@@ -43,9 +43,13 @@
 
 - (void) gridView:(KSGridView *)gridView fillItemView:(UIView *)itemView atIndex:(KSGridViewIndex *)index;
 
+@optional
+// defaults to .height from sizeForItemInGridView:
+- (CGFloat) heightForRowInGridView:(KSGridView *)gridView;
+
 @end
 
-@protocol KSGridViewDelegate
+@protocol KSGridViewDelegate<NSObject>
 
 - (void) gridView:(KSGridView *)gridView didSelectIndex:(KSGridViewIndex *)index;
 

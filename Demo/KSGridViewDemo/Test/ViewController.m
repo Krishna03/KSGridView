@@ -68,6 +68,11 @@
     return CGSizeMake(80, 50);
 }
 
+- (CGFloat) heightForRowInGridView:(KSGridView *)gridView
+{
+    return 100;
+}
+
 - (UIView *) viewForItemInGridView:(KSGridView *)gridView
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];

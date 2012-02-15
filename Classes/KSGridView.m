@@ -156,7 +156,11 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [dataSource sizeForItemInGridView:self].height;
+    if ([dataSource respondsToSelector:@selector(heightForRowInGridView:)]) {
+        return [dataSource heightForRowInGridView:self];
+    } else {
+        return [dataSource sizeForItemInGridView:self].height;
+    }
 }
 
 #pragma mark - KSGridViewCellDelegate
