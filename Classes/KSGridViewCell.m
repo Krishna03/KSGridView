@@ -47,7 +47,7 @@
 
 - (void) setItems:(NSArray *)anItems
 {
-    if (items == anItems) {
+    if (anItems == items) {
         return;
     }
 
@@ -63,7 +63,7 @@
 
     // default to all items
     numberOfColumns = [items count];
-    numberOfVisibleItems = numberOfColumns;
+    self.numberOfVisibleItems = numberOfColumns;
 
     [self setNeedsLayout];
 }
@@ -88,6 +88,8 @@
 - (void) setNumberOfColumns:(NSUInteger)aNumberOfColumns
 {
     numberOfColumns = aNumberOfColumns;
+
+    // cap visible items
     self.numberOfVisibleItems = MIN(numberOfColumns, numberOfVisibleItems);
 
     [self setNeedsLayout];
