@@ -10,8 +10,12 @@
 
 @implementation ViewController
 
+@synthesize grid;
+
 - (void) dealloc
 {
+    self.grid = nil;
+
     [super dealloc];
 }
 
@@ -27,18 +31,29 @@
 {
     [super viewDidLoad];
 
-    KSGridView *grid = [[KSGridView alloc] initWithFrame:self.view.bounds];
+    grid = [[KSGridView alloc] initWithFrame:self.view.bounds];
     grid.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.8 alpha:1.0];
     grid.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     grid.dataSource = self;
     grid.delegate = self;
     [self.view addSubview:grid];
-    [grid release];
+}
+
+- (void) viewDidUnload
+{
+    [super viewDidUnload];
+
+    self.grid = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [grid reloadData];
 }
 
 #pragma mark - KSGridViewDataSource

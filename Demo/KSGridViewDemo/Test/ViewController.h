@@ -11,4 +11,6 @@
 
 @interface ViewController : UIViewController<KSGridViewDataSource, KSGridViewDelegate>
 
+@property (nonatomic, retain) KSGridView *grid;
+
 @end

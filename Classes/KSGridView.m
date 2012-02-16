@@ -24,8 +24,6 @@
 
 @property (nonatomic, retain) UITableView *table;
 
-- (void) didChangeStatusBarOrientation:(NSNotification *)notification;
-
 @end
 
 @implementation KSGridView
@@ -46,12 +44,6 @@
         table.separatorStyle = UITableViewCellSeparatorStyleNone;
         table.dataSource = self;
         table.delegate = self;
-
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(didChangeStatusBarOrientation:)
-                                                     name:UIApplicationDidChangeStatusBarOrientationNotification
-                                                   object:nil];
-
         [self addSubview:table];
     }
     return self;
@@ -65,13 +57,6 @@
 }
 
 - (void) reloadData
-{
-    [table reloadData];
-}
-
-#pragma mark - Layout
-
-- (void) didChangeStatusBarOrientation:(NSNotification *)notification
 {
     [table reloadData];
 }
