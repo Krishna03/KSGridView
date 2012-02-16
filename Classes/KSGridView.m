@@ -98,41 +98,31 @@
 
         // fixed item size
         cell.itemSize = [dataSource sizeForItemInGridView:self];
-
-        // add initial items
-        NSMutableArray *items = [[NSMutableArray alloc] init];
-        for (NSUInteger i = 0; i < numberOfColumns; ++i) {
-            [items addObject:[dataSource viewForItemInGridView:self]];
-        }
-        cell.items = items;
-        [items release];
     }
 
     // set current row and number of columns
     cell.row = indexPath.row;
     cell.numberOfColumns = numberOfColumns;
 
-    // append new items if necessary
-    const NSUInteger missingItems = cell.numberOfMissingItems;
-    for (NSUInteger i = 0; i < missingItems; ++i) {
-        [cell appendItem:[dataSource viewForItemInGridView:self]];
-    }
-
     // remark number of visible items (different for last row)
+    NSUInteger numberOfVisibleItems = 0;
     if (cell.row < numberOfRows - 1) {
-        cell.numberOfVisibleItems = numberOfColumns;
+        numberOfVisibleItems = numberOfColumns;
     } else {
-        cell.numberOfVisibleItems = numberOfItems - (numberOfRows - 1) * numberOfColumns;
+        numberOfVisibleItems = numberOfItems - (numberOfRows - 1) * numberOfColumns;
     }
 
     // fill item content
-    for (NSUInteger i = 0; i < cell.numberOfVisibleItems; ++i) {
+    for (NSUInteger i = 0; i < numberOfVisibleItems; ++i) {
         UIView *itemView = [cell itemAtIndex:i];
 
         // provide compound index to data source
         KSGridViewIndex *index = [KSGridViewIndex indexWithCell:cell column:i];
         [dataSource gridView:self fillItemView:itemView atIndex:index];
     }
+
+    // save visible items count
+    cell.numberOfVisibleItems = numberOfVisibleItems;
 
     return cell;
 }
@@ -149,6 +139,11 @@
 }
 
 #pragma mark - KSGridViewCellDelegate
+
+- (UIView *) viewForItemInGridViewCell:(KSGridViewCell *)cell
+{
+    return [dataSource viewForItemInGridView:self];
+}
 
 - (void) gridViewCell:(KSGridViewCell *)cell didSelectItemIndex:(NSInteger)itemIndex
 {

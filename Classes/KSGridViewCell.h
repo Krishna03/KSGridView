@@ -33,17 +33,14 @@
 
 - (id) initWithReuseIdentifier:(NSString *)reuseIdentifier;
 
-- (void) setItems:(NSArray *)anItems;
-- (void) appendItem:(UIView *)itemView;
+- (void) setNumberOfColumns:(NSUInteger)aNumberOfColumns removeExceedingItems:(BOOL)removeExceedingItems;
 - (UIView *) itemAtIndex:(NSUInteger)index;
-
-// > 0 when items are less than numberOfColumns (needs more items)
-- (NSUInteger) numberOfMissingItems;
 
 @end
 
 @protocol KSGridViewCellDelegate
 
+- (UIView *) viewForItemInGridViewCell:(KSGridViewCell *)cell;
 - (void) gridViewCell:(KSGridViewCell *)cell didSelectItemIndex:(NSInteger)itemIndex;
 
 @end

@@ -32,8 +32,8 @@
     if ((self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier])) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
+        items = [[NSMutableArray alloc] init];
         itemSize = CGSizeZero;
-        items = nil;
     }
     return self;
 }
@@ -45,50 +45,40 @@
     [super dealloc];
 }
 
-- (void) setItems:(NSArray *)anItems
+- (void) setNumberOfColumns:(NSUInteger)aNumberOfColumns
 {
-    if (anItems == items) {
+    [self setNumberOfColumns:aNumberOfColumns removeExceedingItems:NO];
+}
+
+- (void) setNumberOfColumns:(NSUInteger)aNumberOfColumns removeExceedingItems:(BOOL)removeExceedingItems
+{
+    if (aNumberOfColumns == numberOfColumns) {
         return;
     }
 
-    for (UIView *itemView in items) {
-        [itemView removeFromSuperview];
-    }
-    [items release];
-    items = [anItems mutableCopy];
-    for (UIView *itemView in items) {
-        itemView.userInteractionEnabled = NO; // for touchesBegan
-        [self.contentView addSubview:itemView];
-    }
-
-    // default to all items
-    numberOfColumns = [items count];
-    self.numberOfVisibleItems = numberOfColumns;
-
-    [self setNeedsLayout];
-}
-
-- (NSUInteger) numberOfMissingItems
-{
-    if (numberOfColumns <= [items count]) {
-        return 0;
-    }
-    return numberOfColumns - [items count];
-}
-
-- (void) appendItem:(UIView *)itemView
-{
-    itemView.userInteractionEnabled = NO; // for touchesBegan
-    [items addObject:itemView];
-    [self.contentView addSubview:itemView];
-
-    [self setNeedsLayout];
-}
-
-- (void) setNumberOfColumns:(NSUInteger)aNumberOfColumns
-{
     numberOfColumns = aNumberOfColumns;
 
+    // append new items if necessary
+    const NSInteger neededItems = numberOfColumns - [items count];
+    if (neededItems > 0) {
+        for (NSUInteger i = 0; i < neededItems; ++i) {
+            UIView *itemView = [delegate viewForItemInGridViewCell:self];
+            itemView.userInteractionEnabled = NO; // for touchesBegan
+            [items addObject:itemView];
+
+            // add to cell content
+            [self.contentView addSubview:itemView];
+        }
+    }
+    // optionally destroy unused items
+    else if (removeExceedingItems && (neededItems < 0)) {
+        for (NSUInteger i = 0; i < -neededItems; ++i) {
+            UIView *itemView = [items lastObject];
+            [itemView removeFromSuperview];
+            [items removeLastObject];
+        }
+    }
+    
     // cap visible items
     self.numberOfVisibleItems = MIN(numberOfColumns, numberOfVisibleItems);
 
@@ -112,9 +102,6 @@
 
 - (UIView *) itemAtIndex:(NSUInteger)index
 {
-    if (([items count] == 0) || (index >= [items count])) {
-        return nil;
-    }
     return [items objectAtIndex:index];
 }
 
