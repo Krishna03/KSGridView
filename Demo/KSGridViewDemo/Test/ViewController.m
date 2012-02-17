@@ -96,7 +96,7 @@
     return [label autorelease];
 }
 
-- (void) gridView:(KSGridView *)gridView fillItemView:(UIView *)itemView atIndex:(KSGridViewIndex *)index
+- (void) gridView:(KSGridView *)gridView setDataForItemView:(UIView *)itemView atIndex:(KSGridViewIndex *)index
 {
     NSString *title = [NSString stringWithFormat:@"%d", index.position + 1];
 

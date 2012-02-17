@@ -118,7 +118,7 @@
 
         // provide compound index to data source
         KSGridViewIndex *index = [KSGridViewIndex indexWithCell:cell column:i];
-        [dataSource gridView:self fillItemView:itemView atIndex:index];
+        [dataSource gridView:self setDataForItemView:itemView atIndex:index];
     }
 
     // save visible items count

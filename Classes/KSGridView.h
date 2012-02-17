@@ -41,7 +41,7 @@
 - (CGSize) sizeForItemInGridView:(KSGridView *)gridView;
 - (UIView *) viewForItemInGridView:(KSGridView *)gridView;
 
-- (void) gridView:(KSGridView *)gridView fillItemView:(UIView *)itemView atIndex:(KSGridViewIndex *)index;
+- (void) gridView:(KSGridView *)gridView setDataForItemView:(UIView *)itemView atIndex:(KSGridViewIndex *)index;
 
 @optional
 // defaults to .height from sizeForItemInGridView:
