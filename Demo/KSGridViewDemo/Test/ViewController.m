@@ -88,9 +88,9 @@
     return 100;
 }
 
-- (UIView *) viewForItemInGridView:(KSGridView *)gridView
+- (UIView *) gridView:(KSGridView *)gridView viewForItemInRect:(CGRect)rect
 {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    UILabel *label = [[UILabel alloc] initWithFrame:rect];
     label.textColor = [UIColor blueColor];
     label.textAlignment = UITextAlignmentCenter;
     return [label autorelease];

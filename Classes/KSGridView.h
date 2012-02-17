@@ -39,11 +39,14 @@
 - (NSInteger) numberOfColumnsInGridView:(KSGridView *)gridView;
 
 - (CGSize) sizeForItemInGridView:(KSGridView *)gridView;
-- (UIView *) viewForItemInGridView:(KSGridView *)gridView;
+- (UIView *) gridView:(KSGridView *)gridView viewForItemInRect:(CGRect)rect;
 
 - (void) gridView:(KSGridView *)gridView setDataForItemView:(UIView *)itemView atIndex:(KSGridViewIndex *)index;
 
 @optional
+
+- (UIView *) __attribute__((deprecated)) viewForItemInGridView:(KSGridView *)gridView;
+
 // defaults to .height from sizeForItemInGridView:
 - (CGFloat) heightForRowInGridView:(KSGridView *)gridView;
 

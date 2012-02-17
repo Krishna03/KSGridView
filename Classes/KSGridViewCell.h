@@ -40,7 +40,7 @@
 
 @protocol KSGridViewCellDelegate
 
-- (UIView *) viewForItemInGridViewCell:(KSGridViewCell *)cell;
+- (UIView *) gridViewCell:(KSGridViewCell *)cell viewForItemInRect:(CGRect)rect;
 - (void) gridViewCell:(KSGridViewCell *)cell didSelectItemIndex:(NSInteger)itemIndex;
 
 @end

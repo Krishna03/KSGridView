@@ -62,7 +62,7 @@
     const NSInteger neededItems = numberOfColumns - [items count];
     if (neededItems > 0) {
         for (NSUInteger i = 0; i < neededItems; ++i) {
-            UIView *itemView = [delegate viewForItemInGridViewCell:self];
+            UIView *itemView = [delegate gridViewCell:self viewForItemInRect:self.contentView.bounds];
             itemView.userInteractionEnabled = NO; // for touchesBegan
             [items addObject:itemView];
 

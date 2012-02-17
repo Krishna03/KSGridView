@@ -140,9 +140,13 @@
 
 #pragma mark - KSGridViewCellDelegate
 
-- (UIView *) viewForItemInGridViewCell:(KSGridViewCell *)cell
+- (UIView *) gridViewCell:(KSGridViewCell *)cell viewForItemInRect:(CGRect)rect
 {
-    return [dataSource viewForItemInGridView:self];
+    if ([dataSource respondsToSelector:@selector(gridView:viewForItemInRect:)]) {
+        return [dataSource gridView:self viewForItemInRect:rect];
+    } else {
+        return [dataSource viewForItemInGridView:self];
+    }
 }
 
 - (void) gridViewCell:(KSGridViewCell *)cell didSelectItemIndex:(NSInteger)itemIndex
