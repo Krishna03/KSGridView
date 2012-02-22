@@ -84,7 +84,15 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"RowCell";
+    static NSString *defaultIdentifier = @"KSGridViewCell";
+
+    // LEGACY: default identifier (mandatory method instead)
+    NSString *identifier = nil;
+    if ([dataSource respondsToSelector:@selector(identifierForGridView:)]) {
+        identifier = [dataSource identifierForGridView:self];
+    } else {
+        identifier = defaultIdentifier;
+    }
 
     // data source size
     const NSUInteger numberOfItems = [dataSource numberOfItemsInGridView:self];

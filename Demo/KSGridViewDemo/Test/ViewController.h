@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "KSGridView.h"
 
-@interface ViewController : UIViewController<KSGridViewDataSource, KSGridViewDelegate>
+@interface ViewController : UIViewController<KSGridViewDataSource, KSGridViewDelegate> {
+    BOOL alternative;
+}
 
 @property (nonatomic, retain) KSGridView *grid;
 

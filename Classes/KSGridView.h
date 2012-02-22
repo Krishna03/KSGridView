@@ -35,6 +35,8 @@
 
 @protocol KSGridViewDataSource<NSObject>
 
+- (NSString *) identifierForGridView:(KSGridView *)gridView;
+
 - (NSInteger) numberOfItemsInGridView:(KSGridView *)gridView;
 - (NSInteger) numberOfColumnsInGridView:(KSGridView *)gridView;
 

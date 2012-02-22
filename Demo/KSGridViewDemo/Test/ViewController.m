@@ -58,6 +58,15 @@
 
 #pragma mark - KSGridViewDataSource
 
+- (NSString *) identifierForGridView:(KSGridView *)gridView
+{
+    if (alternative) {
+        return @"AlternativeGrid";
+    } else {
+        return @"StandardGrid";
+    }
+}
+
 - (NSInteger) numberOfItemsInGridView:(KSGridView *)gridView
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -80,7 +89,11 @@
 
 - (CGSize) sizeForItemInGridView:(KSGridView *)gridView
 {
-    return CGSizeMake(80, 50);
+    if (alternative) {
+        return CGSizeMake(80, 50);
+    } else {
+        return CGSizeMake(120, 70);
+    }
 }
 
 - (CGFloat) heightForRowInGridView:(KSGridView *)gridView
@@ -91,7 +104,11 @@
 - (UIView *) gridView:(KSGridView *)gridView viewForItemInRect:(CGRect)rect
 {
     UILabel *label = [[UILabel alloc] initWithFrame:rect];
-    label.textColor = [UIColor blueColor];
+    if (alternative) {
+        label.textColor = [UIColor blueColor];
+    } else {
+        label.textColor = [UIColor redColor];
+    }
     label.textAlignment = UITextAlignmentCenter;
     return [label autorelease];
 }
@@ -108,6 +125,9 @@
 - (void) gridView:(KSGridView *)gridView didSelectIndex:(KSGridViewIndex *)index
 {
     NSLog(@"selected = %@", index);
+
+    alternative = !alternative;
+    [gridView reloadData];
 }
 
 @end
