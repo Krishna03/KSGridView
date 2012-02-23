@@ -141,7 +141,7 @@
     // notify touched item
     NSUInteger i = 0;
     for (UIView *itemView in items) {
-        if (CGRectContainsPoint(itemView.frame, location)) {
+        if (!itemView.hidden && CGRectContainsPoint(itemView.frame, location)) {
             [delegate gridViewCell:self didSelectItemIndex:i];
             return;
         }
